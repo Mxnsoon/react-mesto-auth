@@ -15,7 +15,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Login from './Login';
 import Register from './Register';
 import InfoTooltip from './InfoTooltip';
-import * as auth from './Auth';
+import * as auth from '../utils/auth';
 
 function App() {
   const history = useHistory();
@@ -143,10 +143,10 @@ function App() {
   }
 
   function handleLogin(email, password) {
-    setLoggedIn(true)
     auth.authorize(email, password)
     .then((res) => {
-      if (res.token){
+      if (res.token) {
+          setLoggedIn(true)
           localStorage.setItem('jwt', res.token)
           return res
       } else {
@@ -163,6 +163,7 @@ function App() {
       console.log(err)
       setIsInfoTooltipOpen(true)
       setisRequestSuccessful(false)
+      setLoggedIn(false)
     })
   }
 

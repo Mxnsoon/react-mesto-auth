@@ -96,9 +96,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`)
       })
-      .catch((err) => {
-        console.log(err)
-      })
     } else {
       return fetch(`${this._url}/cards/likes/${cardId}`, {
         method: "DELETE",
@@ -107,9 +104,6 @@ export default class Api {
         if (res.ok) {
           return res.json();
         } return Promise.reject(`Ошибка ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
       })
     }
   }
