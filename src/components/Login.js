@@ -27,7 +27,7 @@ function Login(props) {
             <h2 className='register__title'>Вход</h2>
             <form className='register__form' onSubmit={handleSubmit} >
                 <input className='register__input' placeholder='email' type='email' required minLength='2' maxLength='40' onChange={handleChangeEmail} />
-                <input className='register__input' placeholder='Пароль' type='text' required minLength='2' maxLength='40' onChange={handleChangePassword} />
+                <input className='register__input' placeholder='Пароль' type='password' required minLength='2' maxLength='40' onChange={handleChangePassword} />
                 <button type='submit' className='register__button-save' onSubmit={handleSubmit}>Войти</button>
             </form>
         </div>
