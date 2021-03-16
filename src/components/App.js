@@ -4,7 +4,7 @@ import Main from '../components/Main';
 import Footer from '../components/Footer';
 import PopupWithForm from './PopupWithForm';
 import React from 'react';
-import { Route, Switch, Redirect, useHistory, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import ImagePopup from '../components/ImagePopup';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
@@ -145,8 +145,7 @@ function App() {
   function handleLogin(email, password) {
     auth.authorize(email, password)
     .then((res) => {
-      if (res.token) {
-          setLoggedIn(true)
+      if (res.token){
           localStorage.setItem('jwt', res.token)
           return res
       } else {
@@ -155,6 +154,7 @@ function App() {
   })
     .then(data => {
       if (data.token) {
+        setLoggedIn(true)
         setEmail(email)
         history.push('/')
       }
@@ -163,7 +163,6 @@ function App() {
       console.log(err)
       setIsInfoTooltipOpen(true)
       setisRequestSuccessful(false)
-      setLoggedIn(false)
     })
   }
 
@@ -182,6 +181,7 @@ function App() {
           if (res) {
             setLoggedIn(true)
             setEmail(res.data.email)
+            history.push('/')
           }
         })
         .catch((err) => {
@@ -237,4 +237,4 @@ function App() {
   );
 }
 
-export default withRouter(App);
+export default App;
